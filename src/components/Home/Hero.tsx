@@ -89,8 +89,12 @@ const Hero = () => {
             key={currentSlide}
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            exit={{ scale: 1.1, opacity: 0 }}
+            transition={{ 
+              duration: 1.2, 
+              ease: [0.25, 0.46, 0.45, 0.94],
+              scale: { duration: 1.5 }
+            }}
             className="absolute inset-0"
           >
             <div 
@@ -98,8 +102,13 @@ const Hero = () => {
               style={{ backgroundImage: `url(${defaultSlides[currentSlide].image})` }}
             />
             {/* Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -140,20 +149,24 @@ const Hero = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentSlide}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.6 }}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -30, scale: 1.05 }}
+                  transition={{ 
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    scale: { duration: 1 }
+                  }}
                 >
                   <h1 className="text-5xl lg:text-7xl font-black leading-tight">
-                    <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent drop-shadow-2xl">
                       {defaultSlides[currentSlide].title}
                     </span>
                   </h1>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-[#E67E22] mb-4">
+                  <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#E67E22] to-[#F39C12] bg-clip-text text-transparent mb-4 drop-shadow-lg">
                     {defaultSlides[currentSlide].subtitle}
                   </h2>
-                  <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed font-light">
+                  <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed font-light drop-shadow-lg">
                     {defaultSlides[currentSlide].description}
                   </p>
                 </motion.div>
@@ -225,35 +238,35 @@ const Hero = () => {
             <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-4 z-10">
               <button
                 onClick={prevSlide}
-                className="group w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
+                className="group w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-110 hover:rotate-3 shadow-2xl"
               >
-                <ChevronLeft className="w-6 h-6 text-white group-hover:-translate-x-1 transition-transform duration-300" />
+                <ChevronLeft className="w-7 h-7 text-white group-hover:-translate-x-2 transition-transform duration-500" />
               </button>
               <button
                 onClick={nextSlide}
-                className="group w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-110"
+                className="group w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-110 hover:-rotate-3 shadow-2xl"
               >
-                <ChevronRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                <ChevronRight className="w-7 h-7 text-white group-hover:translate-x-2 transition-transform duration-500" />
               </button>
             </div>
 
             {/* Slide Indicators */}
-            <div className="flex space-x-4 mb-8">
+            <div className="flex space-x-3 mb-8">
               {defaultSlides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`relative w-4 h-4 rounded-full transition-all duration-500 ${
+                  className={`relative w-3 h-3 rounded-full transition-all duration-700 ${
                     currentSlide === index 
-                      ? 'bg-gradient-to-r from-[#E67E22] to-[#F39C12] scale-125 shadow-lg' 
-                      : 'bg-white/30 hover:bg-white/50'
+                      ? 'bg-gradient-to-r from-[#E67E22] to-[#F39C12] scale-150 shadow-2xl' 
+                      : 'bg-white/40 hover:bg-white/60 hover:scale-125'
                   }`}
                 >
                   {currentSlide === index && (
                     <motion.div
                       layoutId="activeSlide"
-                      className="absolute inset-0 bg-gradient-to-r from-[#E67E22] to-[#F39C12] rounded-full"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      className="absolute inset-0 bg-gradient-to-r from-[#E67E22] to-[#F39C12] rounded-full shadow-lg"
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
                     />
                   )}
                 </button>
@@ -261,17 +274,22 @@ const Hero = () => {
             </div>
 
             {/* Progress Bar */}
-            <div className="w-64 h-1 bg-white/20 rounded-full overflow-hidden">
+            <div className="w-80 h-2 bg-white/20 rounded-full overflow-hidden shadow-inner">
               <motion.div
-                className="h-full bg-gradient-to-r from-[#E67E22] to-[#F39C12]"
+                className="h-full bg-gradient-to-r from-[#E67E22] via-[#F39C12] to-[#E67E22] shadow-lg"
                 initial={{ width: "0%" }}
                 animate={{ width: isAutoPlaying ? "100%" : "0%" }}
-                transition={{ duration: 5, ease: "linear", repeat: isAutoPlaying ? Infinity : 0 }}
+                transition={{ 
+                  duration: 5, 
+                  ease: "linear", 
+                  repeat: isAutoPlaying ? Infinity : 0,
+                  repeatType: "restart"
+                }}
               />
             </div>
 
             {/* Slide Counter */}
-            <div className="mt-6 text-white/80 text-sm font-medium">
+            <div className="mt-6 text-white/90 text-base font-bold tracking-wider">
               {String(currentSlide + 1).padStart(2, '0')} / {String(defaultSlides.length).padStart(2, '0')}
             </div>
           </motion.div>
@@ -279,9 +297,50 @@ const Hero = () => {
       </div>
 
       {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-20">
-          <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
+        {/* Animated Wave */}
+        <div className="relative">
+          <svg 
+            viewBox="0 0 1440 120" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="w-full h-24 lg:h-32"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
+                <stop offset="50%" stopColor="rgba(255,255,255,1)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.9)" />
+              </linearGradient>
+            </defs>
+            <path 
+              d="M0,120 C240,60 480,40 720,60 C960,80 1200,40 1440,60 L1440,120 Z" 
+              fill="url(#waveGradient)"
+              className="animate-wave"
+            />
+            <path 
+              d="M0,120 C360,80 720,20 1080,40 C1200,50 1320,60 1440,40 L1440,120 Z" 
+              fill="rgba(255,255,255,0.7)"
+              className="animate-wave-delayed"
+            />
+          </svg>
+          
+          {/* Floating particles */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-white/30 rounded-full animate-float"
+                style={{
+                  left: `${20 + i * 15}%`,
+                  bottom: `${30 + (i % 3) * 20}px`,
+                  animationDelay: `${i * 0.5}s`,
+                  animationDuration: `${3 + i * 0.5}s`
+                }}
+              />
+            ))}
+          </div>
         </svg>
       </div>
     </section>
