@@ -26,6 +26,14 @@ const AdminLayout = () => {
   }, [])
 
   const checkUser = async () => {
+    // Demo mode check
+    if (import.meta.env.VITE_SUPABASE_URL === 'https://demo.supabase.co' || 
+        !import.meta.env.VITE_SUPABASE_URL || 
+        import.meta.env.VITE_SUPABASE_URL === 'demo') {
+      navigate('/admin/login')
+      return
+    }
+    
     const currentUser = await getCurrentUser()
     if (!currentUser) {
       navigate('/admin/login')

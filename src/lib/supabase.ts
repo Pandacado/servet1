@@ -55,6 +55,12 @@ export const supabase = (() => {
 // Auth helpers with error handling
 export const signIn = async (email: string, password: string) => {
   try {
+    // Check if we're in demo mode
+    if (supabaseUrl === 'https://demo.supabase.co') {
+      console.warn('Demo mode: Auth disabled')
+      return { data: null, error: { message: 'Demo mode - Auth devre dışı' } }
+    }
+    
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -62,12 +68,17 @@ export const signIn = async (email: string, password: string) => {
     return { data, error }
   } catch (error) {
     console.error('Sign in error:', error)
-    return { data: null, error: { message: 'Giriş yapılamadı' } }
+    return { data: null, error: { message: 'Giriş yapılamadı. Lütfen bilgilerinizi kontrol edin.' } }
   }
 }
 
 export const signOut = async () => {
   try {
+    // Check if we're in demo mode
+    if (supabaseUrl === 'https://demo.supabase.co') {
+      return { error: null }
+    }
+    
     const { error } = await supabase.auth.signOut()
     return { error }
   } catch (error) {
@@ -78,6 +89,11 @@ export const signOut = async () => {
 
 export const getCurrentUser = async () => {
   try {
+    // Check if we're in demo mode
+    if (supabaseUrl === 'https://demo.supabase.co') {
+      return null
+    }
+    
     const { data: { user } } = await supabase.auth.getUser()
     return user
   } catch (error) {

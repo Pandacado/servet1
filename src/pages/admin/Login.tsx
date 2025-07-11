@@ -27,15 +27,25 @@ const Login = () => {
     setError('')
 
     try {
+      // Demo mode check
+      if (import.meta.env.VITE_SUPABASE_URL === 'https://demo.supabase.co' || 
+          !import.meta.env.VITE_SUPABASE_URL || 
+          import.meta.env.VITE_SUPABASE_URL === 'demo') {
+        setError('Demo modunda admin paneli devre dışıdır. Gerçek Supabase bağlantısı gereklidir.')
+        setIsLoading(false)
+        return
+      }
+      
       const { error } = await signIn(data.email, data.password)
       
       if (error) {
-        setError('Geçersiz e-posta veya şifre')
+        setError(error.message || 'Geçersiz e-posta veya şifre')
       } else {
         navigate('/admin/dashboard')
       }
     } catch (err) {
-      setError('Giriş yapılırken bir hata oluştu')
+      console.error('Login error:', err)
+      setError('Giriş yapılırken bir hata oluştu. Lütfen tekrar deneyin.')
     } finally {
       setIsLoading(false)
     }

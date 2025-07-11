@@ -39,6 +39,15 @@ const Register = () => {
     setError('')
 
     try {
+      // Demo mode check
+      if (import.meta.env.VITE_SUPABASE_URL === 'https://demo.supabase.co' || 
+          !import.meta.env.VITE_SUPABASE_URL || 
+          import.meta.env.VITE_SUPABASE_URL === 'demo') {
+        setError('Demo modunda kayıt işlemi devre dışıdır. Gerçek Supabase bağlantısı gereklidir.')
+        setIsLoading(false)
+        return
+      }
+      
       // Supabase Auth ile kullanıcı oluştur
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
