@@ -70,8 +70,8 @@ const Header = () => {
           <div className="flex items-center">
             <div className="flex items-center">
   <Link to="/" className="flex items-center space-x-2">
-    <img src={logo} alt="Logo" className="h-10 w-auto" />
-    <span className="text-2xl font-bold text-[#2C3E50]">{companyName}</span>
+    <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+   
   </Link>
 </div>
           </div>
