@@ -5,7 +5,7 @@ import { supabase } from '../../lib/supabase'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [logo, setLogo] = useState('/logo.svg')
+  const [logo, setLogo] = useState('/logo.png')
   const [companyName, setCompanyName] = useState('Servet Dekorasyon')
   const location = useLocation()
 
