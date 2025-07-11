@@ -1,61 +1,75 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
-import Header from './components/Layout/Header'
-import Footer from './components/Layout/Footer'
-import Home from './pages/Home'
-import Services from './pages/Services'
-import References from './pages/References'
-import Blog from './pages/Blog'
-import BlogPost from './pages/BlogPost'
-import Contact from './pages/Contact'
-import Login from './pages/admin/Login'
-import Register from './pages/admin/Register'
-import AdminLayout from './pages/admin/AdminLayout'
-import Dashboard from './pages/admin/Dashboard'
-import BlogManagement from './pages/admin/BlogManagement'
-import ReferencesManagement from './pages/admin/ReferencesManagement'
-import ContactsManagement from './pages/admin/ContactsManagement'
-import ServicesManagement from './pages/admin/ServicesManagement'
-import Settings from './pages/admin/Settings'
-import WhatsAppButton from './components/WhatsAppButton'
+
+// Lazy load components
+const Header = React.lazy(() => import('./components/Layout/Header'))
+const Footer = React.lazy(() => import('./components/Layout/Footer'))
+const Home = React.lazy(() => import('./pages/Home'))
+const Services = React.lazy(() => import('./pages/Services'))
+const References = React.lazy(() => import('./pages/References'))
+const Blog = React.lazy(() => import('./pages/Blog'))
+const BlogPost = React.lazy(() => import('./pages/BlogPost'))
+const Contact = React.lazy(() => import('./pages/Contact'))
+const Login = React.lazy(() => import('./pages/admin/Login'))
+const Register = React.lazy(() => import('./pages/admin/Register'))
+const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
+const Dashboard = React.lazy(() => import('./pages/admin/Dashboard'))
+const BlogManagement = React.lazy(() => import('./pages/admin/BlogManagement'))
+const ReferencesManagement = React.lazy(() => import('./pages/admin/ReferencesManagement'))
+const ContactsManagement = React.lazy(() => import('./pages/admin/ContactsManagement'))
+const ServicesManagement = React.lazy(() => import('./pages/admin/ServicesManagement'))
+const Settings = React.lazy(() => import('./pages/admin/Settings'))
+const WhatsAppButton = React.lazy(() => import('./components/WhatsAppButton'))
+
+// Loading component
+const LoadingSpinner = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#E67E22] mx-auto mb-4"></div>
+      <p className="text-gray-600">Yükleniyor...</p>
+    </div>
+  </div>
+)
 
 function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <Routes>
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<Login />} />
-          <Route path="/admin/register" element={<Register />} />
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="blog" element={<BlogManagement />} />
-            <Route path="references" element={<ReferencesManagement />} />
-            <Route path="contacts" element={<ContactsManagement />} />
-            <Route path="services" element={<ServicesManagement />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-          
-          {/* Public Routes */}
-          <Route path="/*" element={
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-grow">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/hizmetler" element={<Services />} />
-                  <Route path="/referanslar" element={<References />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
-                  <Route path="/iletisim" element={<Contact />} />
-                </Routes>
-              </main>
-              <Footer />
-              <WhatsAppButton />
-            </div>
-          } />
-        </Routes>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<Login />} />
+            <Route path="/admin/register" element={<Register />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="blog" element={<BlogManagement />} />
+              <Route path="references" element={<ReferencesManagement />} />
+              <Route path="contacts" element={<ContactsManagement />} />
+              <Route path="services" element={<ServicesManagement />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+            
+            {/* Public Routes */}
+            <Route path="/*" element={
+              <div className="min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-grow">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/hizmetler" element={<Services />} />
+                    <Route path="/referanslar" element={<References />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/iletisim" element={<Contact />} />
+                  </Routes>
+                </main>
+                <Footer />
+                <WhatsAppButton />
+              </div>
+            } />
+          </Routes>
+        </Suspense>
       </Router>
     </ErrorBoundary>
   )
