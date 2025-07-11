@@ -45,6 +45,18 @@ const getIcon = (iconName: string) => {
   }
 }
 
+const getServiceSlug = (title: string) => {
+  const slugMap: { [key: string]: string } = {
+    'Banyo Tadilatı': 'banyo-tadilati',
+    'Banyo Tadilat': 'banyo-tadilati',
+    'Banyo Tadilati': 'banyo-tadilati',
+    'Dekorasyon': 'dekorasyon',
+    'Sıhhi Tesisat': 'sihhi-tesisat',
+    'Sihhi Tesisat': 'sihhi-tesisat'
+  }
+  return slugMap[title] || title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+}
+
 const Services = () => {
   const [services, setServices] = useState<Service[]>(defaultServices)
   const [loading, setLoading] = useState(true)
@@ -160,12 +172,20 @@ const Services = () => {
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-2xl font-black text-[#2C3E50] text-center mb-6 group-hover:text-[#E67E22] transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 text-center leading-relaxed text-lg">
-                    {service.description}
-                  </p>
+                  <Link to={`/hizmet/${getServiceSlug(service.title)}`} className="block">
+                    <h3 className="text-2xl font-black text-[#2C3E50] text-center mb-6 group-hover:text-[#E67E22] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 text-center leading-relaxed text-lg mb-4">
+                      {service.description}
+                    </p>
+                    <div className="text-center">
+                      <span className="inline-flex items-center text-[#E67E22] font-semibold hover:text-[#D35400] transition-colors duration-300">
+                        Detayları Gör
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </div>
+                  </Link>
 
                   {/* Hover Effect */}
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

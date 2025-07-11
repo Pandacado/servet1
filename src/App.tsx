@@ -11,6 +11,7 @@ const References = React.lazy(() => import('./pages/References'))
 const Blog = React.lazy(() => import('./pages/Blog'))
 const BlogPost = React.lazy(() => import('./pages/BlogPost'))
 const Contact = React.lazy(() => import('./pages/Contact'))
+const ServiceDetail = React.lazy(() => import('./pages/ServiceDetail'))
 const Login = React.lazy(() => import('./pages/admin/Login'))
 const Register = React.lazy(() => import('./pages/admin/Register'))
 const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout'))
@@ -61,6 +62,7 @@ function App() {
                     <Route path="/referanslar" element={<References />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/hizmet/:slug" element={<ServiceDetail />} />
                     <Route path="/iletisim" element={<Contact />} />
                   </Routes>
                 </main>

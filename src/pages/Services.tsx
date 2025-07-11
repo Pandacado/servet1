@@ -44,6 +44,18 @@ const getIcon = (iconName: string) => {
   }
 }
 
+const getServiceSlug = (title: string) => {
+  const slugMap: { [key: string]: string } = {
+    'Banyo Tadilatı': 'banyo-tadilati',
+    'Banyo Tadilat': 'banyo-tadilati',
+    'Banyo Tadilati': 'banyo-tadilati',
+    'Dekorasyon': 'dekorasyon',
+    'Sıhhi Tesisat': 'sihhi-tesisat',
+    'Sihhi Tesisat': 'sihhi-tesisat'
+  }
+  return slugMap[title] || title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+}
+
 const Services = () => {
   const [services, setServices] = useState<Service[]>(defaultServices)
   const [loading, setLoading] = useState(true)
@@ -134,15 +146,23 @@ const Services = () => {
                 key={service.id}
                 className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
-                <div className="flex items-center justify-center w-20 h-20 bg-[#E67E22] rounded-full mx-auto mb-6">
-                  <IconComponent className="w-10 h-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-[#2C3E50] text-center mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-center leading-relaxed text-lg">
-                  {service.description}
-                </p>
+                <Link to={`/hizmet/${getServiceSlug(service.title)}`} className="block">
+                  <div className="flex items-center justify-center w-20 h-20 bg-[#E67E22] rounded-full mx-auto mb-6">
+                    <IconComponent className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#2C3E50] text-center mb-4 hover:text-[#E67E22] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-center leading-relaxed text-lg mb-4">
+                    {service.description}
+                  </p>
+                  <div className="text-center">
+                    <span className="inline-flex items-center text-[#E67E22] font-semibold hover:text-[#D35400] transition-colors duration-300">
+                      Detayları Gör
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </span>
+                  </div>
+                </Link>
               </div>
             )
           })}
