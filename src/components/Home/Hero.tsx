@@ -341,7 +341,6 @@ const Hero = () => {
               />
             ))}
           </div>
-        </svg>
       </div>
     </section>
   )
