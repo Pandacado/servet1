@@ -55,7 +55,7 @@ const Header = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" />
-                <span>info@servetdekorasyontadilat.com</span>
+                <span>mail@servetdekorasyontadilat.com</span>
               </div>
             </div>
             <div className="hidden md:block">
