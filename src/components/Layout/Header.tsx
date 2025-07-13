@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, Mail } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
+import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -70,7 +71,8 @@ const Header = () => {
           <div className="flex items-center">
             <div className="flex items-center">
   <Link to="/" className="flex items-center space-x-2">
-    <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+ <img src={logo} alt="Logo" className="h-10 w-auto" />
+
    
   </Link>
 </div>
