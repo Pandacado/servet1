@@ -6,7 +6,7 @@ import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [logo, setLogo] = useState('/logo.png')
+  //const [logo, setLogo] = useState('/logo.png')
   const [companyName, setCompanyName] = useState('Servet Dekorasyon')
   const location = useLocation()
 
@@ -23,7 +23,7 @@ const Header = () => {
 
       if (data) {
         data.forEach((setting: any) => {
-          if (setting.key === 'site_logo') setLogo(setting.value)
+          //if (setting.key === 'site_logo') setLogo(setting.value)
           if (setting.key === 'company_name') setCompanyName(setting.value)
         })
       }
