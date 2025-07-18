@@ -92,7 +92,7 @@ const Services = () => {
     'Kaliteli malzeme garantisi',
     'Uzman ekip ile profesyonel uygulama',
     'Proje sonrası bakım desteği',
-    'Vitra & Artema yetkili satıcısı',
+    'Vitra & Artema Özel Teknik Destek',
     '27 yıllık sektör deneyimi'
   ]
 
