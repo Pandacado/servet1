@@ -146,8 +146,8 @@ const Partners = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            27 yıldır dünya çapında tanınan markaların 
-            <span className="text-[#E67E22] font-semibold"> yetkili satıcısı</span> olarak hizmet veriyoruz
+            27 yıldır dünya çapında tanınan markaların ürünlerini müşterilerimizle buluşturuyoruz.
+  
           </p>
         </motion.div>
 
@@ -211,8 +211,8 @@ const Partners = () => {
           {[
             {
               icon: Award,
-              title: 'Yetkili Satıcı',
-              description: 'Tüm markaların resmi yetkili satıcısıyız',
+              title: 'Yetkili Teknik Servis',
+              description: 'Tüm markaların Teknik Bilgsine Sahibiz',
               color: 'from-[#E67E22] to-[#F39C12]'
             },
             {
