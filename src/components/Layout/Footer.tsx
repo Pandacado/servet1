@@ -70,7 +70,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-[#E67E22]" />
-                <span className="text-gray-300">0212 555 0123</span>
+                <span className="text-gray-300">0553 467 46 49</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-[#E67E22]" />
@@ -78,7 +78,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <MapPin className="w-5 h-5 mr-3 text-[#E67E22]" />
-                <span className="text-gray-300">İstanbul, Türkiye</span>
+                <span className="text-gray-300">Fatih cd Nevin sk no 11. İçerenköy ataşehir</span>
               </div>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 mr-3 text-[#E67E22]" />
@@ -90,7 +90,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-600 mt-8 pt-8 text-center">
           <p className="text-gray-300">
-            © 2024 Servet Dekorasyon Tadilat. Tüm hakları saklıdır.
+            © 2025 Servet Dekorasyon Tadilat. Tüm hakları saklıdır.
           </p>
         </div>
       </div>
