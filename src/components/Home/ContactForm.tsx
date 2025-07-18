@@ -85,7 +85,7 @@ const ContactForm = () => {
     {
       icon: Phone,
       label: 'Telefon',
-      value: '0212 555 0123',
+      value: '0553 467 46 49',
       gradient: 'from-[#E67E22] to-[#F39C12]'
     },
     {
@@ -97,7 +97,7 @@ const ContactForm = () => {
     {
       icon: MapPin,
       label: 'Adres',
-      value: 'İstanbul, Türkiye',
+      value: 'Fatih cd Nevin sk no 11. İçerenköy ataşehir',
       gradient: 'from-[#8B5CF6] to-[#7C3AED]'
     },
     {
