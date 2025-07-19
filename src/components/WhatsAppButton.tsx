@@ -186,7 +186,7 @@ const WhatsAppButton = () => {
               {/* Contact Info */}
               <div className="text-center pt-2 border-t border-gray-200">
                 <p className="text-xs text-gray-500">
-                  📞 Telefon: 0212 555 0123
+                  📞 Telefon: 0553 467 46 49
                   <br />
                   🕒 Pzt-Cum: 08:00-18:00
                 </p>
