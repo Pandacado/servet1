@@ -64,7 +64,7 @@ const Contact = () => {
     {
       icon: Phone,
       label: 'Telefon',
-      value: '0212 555 0123',
+      value: '0553 467 46 49',
       description: '7/24 destek hattımız',
       gradient: 'from-[#E67E22] to-[#F39C12]'
     },
@@ -78,7 +78,7 @@ const Contact = () => {
     {
       icon: MapPin,
       label: 'Adres',
-      value: 'İstanbul, Türkiye',
+      value: 'Fatih cd Nevin sk no 11. İçerenköy Ataşehir',
       description: 'Merkezi lokasyon',
       gradient: 'from-[#8B5CF6] to-[#7C3AED]'
     },
@@ -113,7 +113,7 @@ const Contact = () => {
     {
       icon: Star,
       title: 'Kalite Garantisi',
-      description: 'Vitra & Artema yetkili satıcısı güvencesi',
+      description: 'Vitra & Artema güvencesi',
       gradient: 'from-[#10B981] to-[#059669]'
     }
   ]
