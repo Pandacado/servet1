@@ -5,6 +5,7 @@ import References from '../components/Home/References'
 import BlogPreview from '../components/Home/BlogPreview'
 import ContactForm from '../components/Home/ContactForm'
 import Partners from '../components/Home/Partners'
+import TestimonialsSlider from '../components/Home/TestimonialsSlider'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <References />
       <BlogPreview />
       <Partners />
+            <TestimonialsSlider /> {/* 👈 Yeni eklenen yorum bileşeni */}
       <ContactForm />
     </div>
   )
