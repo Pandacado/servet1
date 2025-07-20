@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Star, Quote } from 'lucide-react'
 
@@ -31,6 +31,24 @@ const testimonials = [
 ]
 
 const TestimonialsSlider = () => {
+  const sliderRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        sliderRef.current.scrollLeft += 1
+        if (
+          sliderRef.current.scrollLeft + sliderRef.current.clientWidth >=
+          sliderRef.current.scrollWidth
+        ) {
+          sliderRef.current.scrollLeft = 0
+        }
+      }
+    }, 25) // hızı burada ayarlayabilirsin
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section className="py-24 bg-[#F9FAFB] overflow-hidden relative">
       <div className="max-w-6xl mx-auto px-6">
@@ -49,11 +67,8 @@ const TestimonialsSlider = () => {
         </motion.div>
 
         <motion.div
-          className="flex space-x-6 overflow-x-auto scrollbar-hide px-2"
-          initial={{ x: 100 }}
-          whileInView={{ x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          className="flex space-x-6 px-2 overflow-x-scroll scrollbar-hide"
+          ref={sliderRef}
         >
           {testimonials.map((item) => (
             <div key={item.id} className="min-w-[320px] max-w-sm bg-white shadow-xl rounded-3xl p-8 flex-shrink-0">
@@ -63,7 +78,7 @@ const TestimonialsSlider = () => {
                 ))}
               </div>
               <p className="text-gray-700 text-lg mb-4 leading-relaxed">"{item.comment}"</p>
-              <h4 className="text-xl font-bold text-[#4F46E5]">{item.name}</h4>
+              <h4 className="text-xl font-bold text-orange-500">{item.name}</h4> {/* İsim turuncu */}
             </div>
           ))}
         </motion.div>
